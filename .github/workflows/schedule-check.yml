@@ -1,0 +1,18 @@
+name: GitHubの予約起動チェック
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/schedule-check.yml'
+  schedule:
+    - cron: '3,13,23,33,43,53 * * * *'
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: echo "起動イベントは $GITHUB_EVENT_NAME です"
